@@ -1,0 +1,19 @@
+input x_actual: Float64
+input y_actual: Float64
+input z_actual: Float64
+
+input x_target: Float64
+input y_target: Float64
+input z_target: Float64
+
+output x_drift: Float64 := x_actual - x_target
+output y_drift: Float64 := y_actual - y_target
+output z_drift: Float64 := z_actual - z_target
+
+output drift_norm: Float64 := sqrt(x_drift^2 + y_drift^2 + z_drift^2)
+
+trigger (x_drift > 0.05 or x_drift < -0.05)
+trigger (y_drift > 0.05 or y_drift < -0.05)
+trigger (z_drift > 0.05 or z_drift < -0.05)
+
+trigger drift_norm > 0.15
